@@ -1,0 +1,61 @@
+{
+  "name": "calcolatori-medici",
+  "productName": "MedCalc Suite",
+  "version": "1.2.0",
+  "description": "Suite professionale di oltre 100 calcolatori clinici, formule diagnostiche ed equazioni predittive.",
+  "main": "main.js",
+  "author": "Daniele Gabrovec",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielegabrovec/calcolatori-medici.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "set ELECTRON_RUN_AS_NODE=&& electron .",
+    "build": "electron-builder --win",
+    "build:dir": "electron-builder --win --dir",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.danielegabrovec.medcalc",
+    "productName": "MedCalc Suite",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "MedCalc Suite"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "App/**/*"
+    ]
+  },
+  "keywords": [
+    "medcalc",
+    "calcolatori-medici",
+    "medicina",
+    "sanita",
+    "clinica",
+    "daniele-gabrovec"
+  ],
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
+  }
+}

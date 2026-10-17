@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classificazione di Mallampati (Valutazione Vie Aeree) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Classificazione di Mallampati (Valutazione Vie Aeree)</h1>
+        <div class="subtitle">Predittore visivo anatomico di intubazione orotracheale difficile in anestesia e rianimazione.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-chirurgia">Chirurgia & Perioperatorio</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="classVal">Strutture Anatomiche Orofaringee Visibili a Bocca Aperta *</label>
+          <select id="classVal" class="form-select"><option value="1">Classe I: Palato molle, fauci, ugola e pilastri tonsillari completamente visibili</option><option value="2">Classe II: Palato molle, fauci e porzione superiore dell'ugola visibili</option><option value="3">Classe III: Palato molle e base dell'ugola visibili</option><option value="4">Classe IV: Solo il palato duro è visibile (palato molle completamente non visibile)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

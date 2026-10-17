@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indice BODE per Broncopneumopatia Cronica Ostruttiva (BPCO) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Indice BODE per Broncopneumopatia Cronica Ostruttiva (BPCO)</h1>
+        <div class="subtitle">Score multidimensionale per la predizione di sopravvivenza a 4 anni nei pazienti con BPCO.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-pneumologia">Pneumologia & Gasometria</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="fev1">FEV₁ % del teorico post-broncodilatatore *</label>
+          <select id="fev1" class="form-select"><option value="0">≥ 65% (0 pt)</option><option value="1">50 - 64% (+1 pt)</option><option value="2">36 - 49% (+2 pt)</option><option value="3">≤ 35% (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="walk">Test del Cammino in 6 Minuti (6MWD) *</label>
+          <select id="walk" class="form-select"><option value="0">≥ 350 metri (0 pt)</option><option value="1">250 - 349 metri (+1 pt)</option><option value="2">150 - 249 metri (+2 pt)</option><option value="3">≤ 149 metri (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="mmrc">Scala di Dispnea mMRC *</label>
+          <select id="mmrc" class="form-select"><option value="0">Grado 0 - 1 (0 pt)</option><option value="1">Grado 2: cammina più piano dei coetanei (+1 pt)</option><option value="2">Grado 3: si ferma per respirare dopo 100 metri (+2 pt)</option><option value="3">Grado 4: dispnea per vestirsi / uscire (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="bmi">BMI (Indice di Massa Corporea) *</label>
+          <select id="bmi" class="form-select"><option value="0">> 21 kg/m² (0 pt)</option><option value="1">≤ 21 kg/m² (+1 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

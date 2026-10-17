@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score 4Ts per Trombocitopenia Indotta da Eparina (HIT) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Score 4Ts per Trombocitopenia Indotta da Eparina (HIT)</h1>
+        <div class="subtitle">Probabilità pre-test di HIT di tipo II e indicazione all'immediata sospensione dell'eparina.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-ematologia">Ematologia & Oncologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="t1">Grado di Trombocitopenia *</label>
+          <select id="t1" class="form-select"><option value="2">Calo piastrine > 50% e nadir ≥ 20.000/µL (+2 pt)</option><option value="1">Calo piastrine 30-50% o nadir 10.000-19.000/µL (+1 pt)</option><option value="0">Calo piastrine < 30% o nadir < 10.000/µL (0 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="t2">Tempistica del calo (Timing) *</label>
+          <select id="t2" class="form-select"><option value="2">Esordio netto tra giorno 5 e 10, o ≤ 1 giorno se eparina negli ultimi 30 gg (+2 pt)</option><option value="1">Esordio dopo giorno 10, o esordio rapido con eparina 30-100 gg fa (+1 pt)</option><option value="0">Esordio prima del giorno 4 senza recente esposizione ad eparina (0 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="t3">Trombosi o altre manifestazioni *</label>
+          <select id="t3" class="form-select"><option value="2">Nuova trombosi documentata o necrosi cutanea o reazione anafilattoide (+2 pt)</option><option value="1">Trombosi progressiva/ricorrente o lesioni cutanee eritematose (+1 pt)</option><option value="0">Nessuna trombosi (0 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="t4">Altre cause di trombocitopenia *</label>
+          <select id="t4" class="form-select"><option value="2">Nessun'altra causa evidente (+2 pt)</option><option value="1">Altra causa possibile (+1 pt)</option><option value="0">Altra causa certa presente (sepsi, DIC, chemio) (0 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

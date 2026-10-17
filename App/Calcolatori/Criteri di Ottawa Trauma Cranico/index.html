@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criteri di Ottawa per Trauma Cranico (CCHR) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Criteri di Ottawa per Trauma Cranico (CCHR)</h1>
+        <div class="subtitle">Regola clinica predittiva validata per decidere la necessità di eseguire la TC encefalo nel trauma cranico lieve.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-neurologia">Neurologia & Urgenza</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="gcs">GCS < 15 a 2 ore dal trauma *</label>
+          <select id="gcs" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="fracture">Sospetto di frattura cranica aperta o depressa *</label>
+          <select id="fracture" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="basilar">Segni di frattura della base cranica (emotimpano, occhi da procione, Battle sign, liquorrea) *</label>
+          <select id="basilar" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="vomit">≥ 2 episodi di vomito *</label>
+          <select id="vomit" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="age">Età ≥ 65 anni *</label>
+          <select id="age" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="amnesia">Amnesia retrograda per gli eventi > 30 minuti prima del trauma *</label>
+          <select id="amnesia" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="mech">Dinamica traumatica pericolosa (investimento pedone, espulsione da veicolo, caduta > 1 metro o > 5 gradini) *</label>
+          <select id="mech" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

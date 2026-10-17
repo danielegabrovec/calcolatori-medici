@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedCalc Suite - Calcolatori Medici di Daniele Gabrovec</title>
+  <link rel="stylesheet" href="../shared/shared.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body class="dashboard-body">
+  <div class="app-layout">
+    
+    <!-- SIDEBAR SINISTRA: MACROAREE E SOTTOAREE -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-icon">🩺</div>
+          <div class="brand-text">
+            <h2>MedCalc</h2>
+            <span>Suite Clinica 100+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section-title">Aree Specialistiche</div>
+
+      <!-- Navigazione ad albero / Accordion -->
+      <nav class="sidebar-nav" id="sidebarNav"></nav>
+
+      <!-- Footer Sidebar con Autore e Diritti -->
+      <div class="sidebar-footer">
+        <div class="author-info-box">
+          <div class="author-row">
+            <span class="author-icon">👨‍⚕️</span>
+            <div class="author-meta">
+              <span class="author-label">Autore dell'App</span>
+              <strong class="author-name">Daniele Gabrovec</strong>
+            </div>
+          </div>
+          <div class="author-copyright">© 2026 • Tutti i diritti riservati</div>
+        </div>
+        <button id="sidebarLegalBtn" class="btn-legal-toggle" title="Diritti, Proprietà Intellettuale e Note Medico-Legali">
+          ⚖️ Diritti & Note Legali
+        </button>
+      </div>
+    </aside>
+
+    <!-- AREA PRINCIPALE: CONTENUTO E CALCOLATORI -->
+    <main class="content-area">
+      
+      <!-- Top Navigation & Search Bar -->
+      <header class="top-nav">
+        <div class="breadcrumbs" id="breadcrumbs">
+          <span class="crumb active" id="crumbMacro">Tutti i Calcolatori</span>
+          <span class="crumb-separator" id="crumbSep" style="display: none;">›</span>
+          <span class="crumb" id="crumbSub" style="display: none;"></span>
+        </div>
+
+        <div class="top-nav-right">
+          <div class="search-box">
+            <span class="search-box-icon">🔍</span>
+            <input 
+              type="text" 
+              id="searchInput" 
+              class="search-box-input" 
+              placeholder="Cerca per nome, sigla o sintomo (es. metabolismo, GCS, Wells, eGFR...)"
+              autocomplete="off"
+            >
+            <button id="clearSearchBtn" class="search-box-clear" title="Cancella ricerca" style="display: none;">✕</button>
+          </div>
+
+          <button id="topNavLegalBtn" class="btn-author-badge" title="Informazioni sull'autore, copyright e note legali">
+            <span class="author-avatar">DG</span>
+            <div class="author-badge-text">
+              <span class="author-badge-name">Daniele Gabrovec</span>
+              <span class="author-badge-sub">Diritti & Disclaimer</span>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      <!-- Sezione Principale -->
+      <div class="content-body">
+        
+        <!-- Banner Intestazione Sezione Selezionata -->
+        <section class="section-hero">
+          <div class="section-hero-content">
+            <div class="hero-badge" id="heroBadge">TUTTI GLI STRUMENTI</div>
+            <h1 class="hero-title" id="heroTitle">Tutti i Calcolatori Medici</h1>
+            <p class="hero-desc" id="heroDesc">Consulta il catalogo completo di oltre 100 calcolatori clinici, formule predittive e score prognostici ideati da Daniele Gabrovec.</p>
+          </div>
+          <div class="hero-stats" id="heroStatsBox">
+            <div class="stat-number" id="statsCount">107</div>
+            <div class="stat-label">Calcolatori</div>
+          </div>
+        </section>
+
+        <!-- Pills delle Sottoaree della Macroarea Corrente (se presenti) -->
+        <div class="subarea-pills-bar" id="subareaPillsBar" style="display: none;"></div>
+
+        <!-- Griglia dei Calcolatori -->
+        <div class="calculators-grid" id="calculatorsGrid"></div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- MODAL: INFO AUTORE, DIRITTI & NOTE LEGALI -->
+  <div class="modal-overlay" id="legalModalOverlay" style="display: none;">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <div class="legal-title-group">
+          <span class="legal-icon">⚖️</span>
+          <div>
+            <h3>MedCalc Suite - Informazioni & Note Legali</h3>
+            <p>Proprietà intellettuale, diritti d'autore e responsabilità medica</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="closeLegalModalBtn" title="Chiudi">✕</button>
+      </div>
+
+      <div class="legal-modal-body">
+        
+        <div class="legal-section author-highlight">
+          <div class="author-portrait">👨‍⚕️</div>
+          <div class="author-details">
+            <div class="legal-badge">AUTORE & SVILUPPATORE</div>
+            <h4>Daniele Gabrovec</h4>
+            <p>Ideazione, progettazione architetturale, implementazione dei 107 calcolatori clinici specialistici, algoritmi matematico-fisiologici e interfaccia software desktop.</p>
+          </div>
+        </div>
+
+        <div class="legal-section">
+          <h4>© Licenza Open-Source & Diritti d'Autore</h4>
+          <p>
+            L'applicazione <strong>MedCalc Suite</strong> è ideata, progettata e sviluppata da <strong>Daniele Gabrovec</strong> e rilasciata come software open-source sotto i termini della <strong>Licenza MIT</strong>.
+          </p>
+          <div class="copyright-callout">
+            <strong>Copyright © 2026 Daniele Gabrovec • Licenza MIT</strong>
+          </div>
+          <p>
+            Il software è concesso a titolo gratuito con la possibilità di utilizzo, consultazione e modifica, mantenendo sempre l'attribuzione della paternità dell'opera all'autore originario Daniele Gabrovec.
+          </p>
+        </div>
+
+        <div class="legal-section disclaimer-box">
+          <div class="disclaimer-header">
+            <span style="font-size: 20px;">⚠️</span>
+            <strong>Disclaimer Medico-Legale & Responsabilità Clinica</strong>
+          </div>
+          <p>
+            Questa applicazione desktop è configurata come strumento di consultazione, ausilio e supporto didattico/decisionale dedicato a professionisti sanitari abilitati, medici e studenti in ambito medico.
+          </p>
+          <ul>
+            <li>Le equazioni, i punteggi prognostici e gli algoritmi implementati si basano sulla letteratura medica scientifica internazionale accreditata (AHA, ESC, KDIGO, NICE, GOLD, BTS, ecc.).</li>
+            <li>I risultati e le stime fornite <strong>non sostituiscono la diagnosi clinica, il giudizio medico individuale</strong> o la valutazione diretta del singolo paziente.</li>
+            <li>L'autore Daniele Gabrovec declina ogni responsabilità per eventuali errori di imputazione dati o per qualsiasi decisione terapeutico-clinica intrapresa sulla base dei valori elaborati dall'applicazione.</li>
+          </ul>
+        </div>
+
+        <div class="legal-meta-footer">
+          <div>Versione: <strong>v1.2.0 • Offline First</strong></div>
+          <div>Autore: <strong>Daniele Gabrovec</strong></div>
+          <div>Anno di Rilascio: <strong>2026</strong></div>
+        </div>
+
+      </div>
+
+      <div class="legal-modal-footer">
+        <button class="btn-primary" id="confirmLegalModalBtn" style="padding: 10px 24px; font-size: 14px;">Ho compreso e confermo</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../shared/calculators-data.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punteggio di APGAR Neonatale - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Punteggio di APGAR Neonatale</h1>
+        <div class="subtitle">Valutazione dell'adattamento neonatale al 1° e 5° minuto di vita.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-pediatria">Pediatria & Neonatologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="color">Colorito (Appearance) *</label>
+          <select id="color" class="form-select"><option value="0">Cianotico/pallido (0 pt)</option><option value="1">Corpo roseo, acrocianosi (+1 pt)</option><option value="2">Completamente roseo (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="hr">Frequenza Cardiaca (Pulse) *</label>
+          <select id="hr" class="form-select"><option value="0">Assente (0 pt)</option><option value="1">< 100 bpm (+1 pt)</option><option value="2">≥ 100 bpm (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="reflex">Riflessi (Grimace) *</label>
+          <select id="reflex" class="form-select"><option value="0">Nessuna risposta (0 pt)</option><option value="1">Smorfia / reazione debole (+1 pt)</option><option value="2">Pianto vivace / tosse (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="tone">Tono Muscolare (Activity) *</label>
+          <select id="tone" class="form-select"><option value="0">Atonico (0 pt)</option><option value="1">Flessione lieve (+1 pt)</option><option value="2">Movimenti attivi (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="resp">Respirazione (Respiration) *</label>
+          <select id="resp" class="form-select"><option value="0">Assente (0 pt)</option><option value="1">Debole / irregolare (+1 pt)</option><option value="2">Buona, pianto vigoroso (+2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

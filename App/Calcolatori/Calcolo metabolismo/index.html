@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolo Metabolismo (Basale + LAF) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="metabolismo.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Calcolo Metabolismo (Basale + LAF)</h1>
+        <div class="subtitle">Stima del BMR & Dispendio Energetico Totale (TDEE)</div>
+      </div>
+    </div>
+    <span class="category-badge badge-nutrizione">Nutrizione & Metabolismo</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-container">
+      
+      <!-- Sezione Input Form -->
+      <section class="med-card">
+        <h2 class="med-card-title">
+          <span>📋</span> Dati Antropometrici & Parametri
+        </h2>
+        <p class="med-card-subtitle">Inserisci i parametri del paziente per calcolare il dispendio calorico.</p>
+
+        <form id="metabolismForm">
+          <!-- Sesso -->
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">Sesso Biologico *</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="gender" value="male" checked>
+                <span>Maschio</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="gender" value="female">
+                <span>Femmina</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Griglia Età, Peso, Altezza -->
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="age">Età <span class="unit">(anni)</span> *</label>
+              <input type="number" id="age" class="form-control" min="1" max="120" placeholder="es. 40" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="weight">Peso <span class="unit">(kg)</span> *</label>
+              <input type="number" id="weight" class="form-control" step="0.1" min="10" max="350" placeholder="es. 75" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="height">Altezza <span class="unit">(cm)</span> *</label>
+              <input type="number" id="height" class="form-control" step="0.5" min="40" max="250" placeholder="es. 175" required>
+            </div>
+          </div>
+
+          <!-- Formula BMR -->
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="formula">Equazione Predittiva BMR *</label>
+            <select id="formula" class="form-select">
+              <option value="mifflin" selected>Mifflin-St Jeor (1990) - Raccomandata AND</option>
+              <option value="harris-roza">Harris-Benedict riveduta (Roza & Shizgal 1984)</option>
+              <option value="who">FAO / WHO / UNU (per fasce d'età)</option>
+              <option value="katch">Katch-McArdle (richiede % Massa Grassa)</option>
+            </select>
+          </div>
+
+          <!-- Massa Grassa (visibile solo se Katch-McArdle) -->
+          <div class="form-group" id="bodyFatGroup" style="display: none; margin-bottom: 16px;">
+            <label class="form-label" for="bodyFat">% Massa Grassa stimata <span class="unit">(%)</span></label>
+            <input type="number" id="bodyFat" class="form-control" min="3" max="70" step="0.5" placeholder="es. 18">
+          </div>
+
+          <!-- Livello di Attività Fisica (LAF / PAL) -->
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-label" for="laf">Livello di Attività Fisica (LAF / PAL) *</label>
+            <select id="laf" class="form-select">
+              <option value="1.2">1.20 - Sedentario assoluto (allettato, attività minima)</option>
+              <option value="1.4" selected>1.40 - Sedentario (lavoro d'ufficio, poco o nessun esercizio)</option>
+              <option value="1.6">1.60 - Moderatamente attivo (lavoro in piedi o sport 1-3 gg/settimana)</option>
+              <option value="1.75">1.75 - Attivo (lavoro dinamico o allenamenti 3-5 gg/settimana)</option>
+              <option value="2.0">2.00 - Molto attivo (lavoro pesante o sport quotidiano intenso)</option>
+              <option value="2.2">2.20 - Estremamente attivo (atleta agonista, doppio allenamento)</option>
+            </select>
+          </div>
+
+          <div class="action-buttons-row">
+            <button type="submit" class="btn-primary" style="flex: 2;">
+              <span>⚡</span> Calcola Fabbisogno
+            </button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">
+              Resetta
+            </button>
+          </div>
+        </form>
+
+        <!-- Riferimenti Clinici -->
+        <div class="clinical-note">
+          <strong>Riferimenti Scientifici:</strong><br>
+          • <em>Mifflin MD et al. (1990)</em>: considerata la formula più accurata per la stima del metabolismo basale nella popolazione adulta sia normopeso che sovrappeso/obesa (ADA / AND Guidelines).<br>
+          • <em>Roza AM, Shizgal HM (1984)</em>: ricalibrazione dell'equazione classica di Harris-Benedict (1919).<br>
+          • <em>FAO/WHO/UNU (2004)</em> & <em>LARN IV Revisione (SINU)</em> per i coefficienti LAF (Physical Activity Level).
+        </div>
+      </section>
+
+      <!-- Sezione Risultati -->
+      <section class="results-panel">
+        <h2 class="med-card-title">
+          <span>📊</span> Risultati Energetici
+        </h2>
+
+        <!-- Placeholder prima del calcolo -->
+        <div id="placeholderContainer" style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+          <div style="font-size: 48px; margin-bottom: 12px;">🥗</div>
+          <h3 style="font-size: 16px; margin-bottom: 6px; color: #334e68;">Nessun dato calcolato</h3>
+          <p style="font-size: 13px;">Compila i campi del paziente e premi su "Calcola Fabbisogno".</p>
+        </div>
+
+        <!-- Risultati effettivi -->
+        <div id="resultsContainer" style="display: none;">
+          <!-- TDEE Hero Box -->
+          <div class="result-hero-box">
+            <div class="label">Fabbisogno Calorico Giornaliero (TDEE)</div>
+            <div class="value" id="tdeeValue">0</div>
+            <div class="unit">kcal / giorno</div>
+            <div style="font-size: 12px; color: #4a5568; margin-top: 4px;" id="tdeeKj">0 kJ/die</div>
+          </div>
+
+          <!-- Metriche BMR, BMI, LAF -->
+          <div class="metrics-summary-grid">
+            <div class="metric-mini-card">
+              <div class="mini-label">Metabolismo Basale (BMR)</div>
+              <div class="mini-value"><span id="bmrValue">0</span> <span style="font-size: 13px; font-weight: normal;">kcal</span></div>
+              <div style="font-size: 11px; color: #718096; margin-top: 2px;" id="bmrKj">0 kJ/die</div>
+            </div>
+
+            <div class="metric-mini-card">
+              <div class="mini-label">Coefficiente LAF</div>
+              <div class="mini-value" id="lafDisplay">1.40</div>
+              <div style="font-size: 11px; color: #718096; margin-top: 2px;">Moltiplicatore attività</div>
+            </div>
+
+            <div class="metric-mini-card">
+              <div class="mini-label">Indice Massa Corporea (BMI)</div>
+              <div class="mini-value" id="bmiValue">0</div>
+              <div style="font-size: 12px; font-weight: 600; margin-top: 2px;" id="bmiCategory">Normopeso</div>
+            </div>
+
+            <div class="metric-mini-card">
+              <div class="mini-label">Formula Applicata</div>
+              <div style="font-size: 13px; font-weight: 600; color: #102a43; margin-top: 4px;">Validata</div>
+              <div style="font-size: 11px; color: #718096;">Standard Internazionale</div>
+            </div>
+          </div>
+
+          <!-- Tabella Obiettivi Nutrizionali -->
+          <h3 style="font-size: 14px; font-weight: 600; color: #334e68; margin-top: 10px;">Obiettivi Energetici Indicativi:</h3>
+          <table class="targets-table">
+            <thead>
+              <tr>
+                <th>Obiettivo</th>
+                <th style="text-align: right;">Target Calorico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>📉 Deficit per calo ponderale</td>
+                <td class="val" id="targetDeficit">0 kcal</td>
+              </tr>
+              <tr>
+                <td>⚖️ Mantenimento del peso</td>
+                <td class="val" id="targetMaintenance">0 kcal</td>
+              </tr>
+              <tr>
+                <td>📈 Surplus calorico (anabolismo)</td>
+                <td class="val" id="targetSurplus">0 kcal</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 16px; font-size: 11px; color: #718096; font-style: italic;">
+            * I valori forniti costituiscono una stima predittiva e devono essere contestualizzati da personale medico-nutrizionale qualificato.
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="metabolismo.js"></script>
+</body>
+</html>
+

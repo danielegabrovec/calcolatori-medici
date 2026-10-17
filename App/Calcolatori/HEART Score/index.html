@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEART Score per Dolore Toracico in Pronto Soccorso - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>HEART Score per Dolore Toracico in Pronto Soccorso</h1>
+        <div class="subtitle">Stratificazione del rischio di eventi avversi cardiaci maggiori (MACE) a 6 settimane.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-cardiologia">Cardiologia & Emodinamica</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="h">Storia clinica (History) *</label>
+          <select id="h" class="form-select"><option value="0">Lievemente sospetta (0 pt)</option><option value="1">Moderatamente sospetta (+1 pt)</option><option value="2">Altamente sospetta (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="e">ECG *</label>
+          <select id="e" class="form-select"><option value="0">Normale (0 pt)</option><option value="1">Ripolarizzazione aspecifica / BBS noto (+1 pt)</option><option value="2">Sottoslivellamento ST / inversione T significativa (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="a">Età (Age) *</label>
+          <select id="a" class="form-select"><option value="0">< 45 anni (0 pt)</option><option value="1">45 - 64 anni (+1 pt)</option><option value="2">≥ 65 anni (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="r">Fattori di Rischio CV (Risk Factors) *</label>
+          <select id="r" class="form-select"><option value="0">Nessun fattore noto (0 pt)</option><option value="1">1 - 2 fattori di rischio (+1 pt)</option><option value="2">≥ 3 fattori o vasculopatia aterosclerotica (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="t">Troponina Iniziale *</label>
+          <select id="t" class="form-select"><option value="0">≤ Limite Normale (0 pt)</option><option value="1">1 - 3 volte il limite normale (+1 pt)</option><option value="2">> 3 volte il limite normale (+2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

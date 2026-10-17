@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score di Caprini per Rischio Tromboembolico Chirurgico - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Score di Caprini per Rischio Tromboembolico Chirurgico</h1>
+        <div class="subtitle">Stratificazione del rischio di trombosi venosa profonda ed embolia polmonare e guida alla tromboprofilassi.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-chirurgia">Chirurgia & Perioperatorio</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="age">Età *</label>
+          <select id="age" class="form-select"><option value="0">< 41 anni (0 pt)</option><option value="1">41 - 60 anni (+1 pt)</option><option value="2">61 - 74 anni (+2 pt)</option><option value="3">≥ 75 anni (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="surg">Tipo di Chirurgia *</label>
+          <select id="surg" class="form-select"><option value="1">Chirurgia minore pianificata (+1 pt)</option><option value="2">Chirurgia maggiore (> 45 min o laparotomica) (+2 pt)</option><option value="5">Chirurgia ortopedica maggiore (artroprotesi anca/ginocchio, frattura femore) (+5 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="immob">Paziente allettato > 72 ore *</label>
+          <select id="immob" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="prevtev">Precedente episodio di TVP / EP *</label>
+          <select id="prevtev" class="form-select"><option value="0">No (0 pt)</option><option value="3">Sì (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="malig">Neoplasia maligna attiva o presente *</label>
+          <select id="malig" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

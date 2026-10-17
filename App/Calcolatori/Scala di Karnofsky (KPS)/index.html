@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scala di Karnofsky Performance Status (KPS) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Scala di Karnofsky Performance Status (KPS)</h1>
+        <div class="subtitle">Scala percentuale (0-100%) di quantificazione dell'autonomia funzionale e prognosi del paziente.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-ematologia">Ematologia & Oncologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="scoreVal">Livello di Capacità Funzionale *</label>
+          <select id="scoreVal" class="form-select"><option value="100">100%: Normale, nessun sintomo o evidenza di malattia</option><option value="90">90%: In grado di svolgere attività normali con lievi sintomi</option><option value="80">80%: Attività normale con sforzo; qualche sintomo</option><option value="70">70%: Si prende cura di sé; incapace di attività lavorativa normale</option><option value="60">60%: Richiede assistenza occasionale, ma provvede ai bisogni personali</option><option value="50">50%: Richiede notevole assistenza e frequenti cure mediche</option><option value="40">40%: Disabile; richiede cure e assistenza speciale continua</option><option value="30">30%: Gravemente disabile; ospedalizzazione indicata</option><option value="20">20%: Molto grave; necessario ricovero per supporto attivo</option><option value="10">10%: Moribondo</option><option value="0">0%: Deceduto</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

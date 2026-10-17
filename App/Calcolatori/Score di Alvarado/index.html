@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score di Alvarado per Appendicite Acuta - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Score di Alvarado per Appendicite Acuta</h1>
+        <div class="subtitle">Probabilità di appendicite acuta nel dolore in fossa iliaca destra.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-chirurgia">Chirurgia & Perioperatorio</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="migr">Migrazione dolore a fossa iliaca destra *</label>
+          <select id="migr" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="anorex">Inappetenza / Anoressia *</label>
+          <select id="anorex" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="nausea">Nausea o vomito *</label>
+          <select id="nausea" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="tender">Dolorabilità fossa iliaca destra (McBurney) *</label>
+          <select id="tender" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="rebound">Segno di Blumberg positivo *</label>
+          <select id="rebound" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="elev">Temperatura ≥ 37.3 °C *</label>
+          <select id="elev" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="leuko">Leucocitosi (> 10.000 /µL) *</label>
+          <select id="leuko" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="shift">Neutrofilia (> 75%) *</label>
+          <select id="shift" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

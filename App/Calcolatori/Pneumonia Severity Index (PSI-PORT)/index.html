@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pneumonia Severity Index (Score PSI / PORT) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Pneumonia Severity Index (Score PSI / PORT)</h1>
+        <div class="subtitle">Stratificazione prognostica a 5 classi di rischio di mortalità a 30 giorni per polmonite acquisita in comunità.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-infettivologia">Infettivologia & Antibiotici</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="age">Età <span class="unit">(anni)</span> *</label>
+          <input type="number" id="age" class="form-control" step="1" min="18" max="105" value="65" required>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="gender">Sesso *</label>
+          <select id="gender" class="form-select"><option value="0">Maschio</option><option value="-10">Femmina (-10 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="nursing">Residente in RSA / Casa di riposo *</label>
+          <select id="nursing" class="form-select"><option value="0">No</option><option value="10">Sì (+10 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="neoplasm">Neoplasia attiva *</label>
+          <select id="neoplasm" class="form-select"><option value="0">No</option><option value="30">Sì (+30 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="liver">Epatopatia nota *</label>
+          <select id="liver" class="form-select"><option value="0">No</option><option value="20">Sì (+20 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="chf">Scompenso cardiaco noto *</label>
+          <select id="chf" class="form-select"><option value="0">No</option><option value="10">Sì (+10 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="cva">Pregresso ictus / vasculopatia cerebrale *</label>
+          <select id="cva" class="form-select"><option value="0">No</option><option value="10">Sì (+10 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="renal">Nefropatia cronica *</label>
+          <select id="renal" class="form-select"><option value="0">No</option><option value="10">Sì (+10 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="rr">Frequenza Respiratoria ≥ 30 atti/min *</label>
+          <select id="rr" class="form-select"><option value="0">No</option><option value="20">Sì (+20 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="sbp">Pressione Sistolica < 90 mmHg *</label>
+          <select id="sbp" class="form-select"><option value="0">No</option><option value="20">Sì (+20 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="temp">Temperatura < 35°C o ≥ 40°C *</label>
+          <select id="temp" class="form-select"><option value="0">No</option><option value="15">Sì (+15 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="hr">Frequenza Cardiaca ≥ 125 bpm *</label>
+          <select id="hr" class="form-select"><option value="0">No</option><option value="10">Sì (+10 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

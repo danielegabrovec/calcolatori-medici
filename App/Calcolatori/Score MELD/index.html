@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score MELD (Model for End-Stage Liver Disease) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Score MELD (Model for End-Stage Liver Disease)</h1>
+        <div class="subtitle">Predittore di mortalità a 3 mesi ed elemento cardine per la lista trapianto fegato.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-gastro">Gastroenterologia & Epatologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="creat">Creatinina Sierica <span class="unit">(mg/dL)</span> *</label>
+          <input type="number" id="creat" class="form-control" step="0.1" min="0.5" max="15" value="1.2" required>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="bili">Bilirubina Totale <span class="unit">(mg/dL)</span> *</label>
+          <input type="number" id="bili" class="form-control" step="0.1" min="0.2" max="30" value="2.1" required>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="inr">INR  *</label>
+          <input type="number" id="inr" class="form-control" step="0.01" min="0.8" max="10" value="1.4" required>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="dial">Dialisi (≥ 2 sedute negli ultimi 7 gg) *</label>
+          <select id="dial" class="form-select"><option value="0">No</option><option value="1">Sì</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

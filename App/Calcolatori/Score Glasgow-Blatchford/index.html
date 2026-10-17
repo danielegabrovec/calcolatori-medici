@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glasgow-Blatchford Bleeding Score (GBS) - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Glasgow-Blatchford Bleeding Score (GBS)</h1>
+        <div class="subtitle">Valutazione del rischio di sanguinamento digestivo superiore (GIB) e identificazione dei pazienti a bassissimo rischio dimissibili.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-gastro">Gastroenterologia & Epatologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="bun">Azotemia (BUN) *</label>
+          <select id="bun" class="form-select"><option value="0">< 18 mg/dL (0 pt)</option><option value="2">18 - 22 mg/dL (+2 pt)</option><option value="3">23 - 28 mg/dL (+3 pt)</option><option value="4">29 - 69 mg/dL (+4 pt)</option><option value="6">≥ 70 mg/dL (+6 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="hb">Emoglobina (Hb) *</label>
+          <select id="hb" class="form-select"><option value="0">Normale (Uomo ≥ 13, Donna ≥ 12 g/dL, 0 pt)</option><option value="1">Uomo 12-12.9 / Donna 10-11.9 g/dL (+1 pt)</option><option value="3">Uomo 10-11.9 g/dL (+3 pt)</option><option value="6">Uomo o Donna < 10.0 g/dL (+6 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="sbp">Pressione Sistolica (PAS) *</label>
+          <select id="sbp" class="form-select"><option value="0">≥ 110 mmHg (0 pt)</option><option value="1">100 - 109 mmHg (+1 pt)</option><option value="2">90 - 99 mmHg (+2 pt)</option><option value="3">< 90 mmHg (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="hr">Frequenza Cardiaca ≥ 100 bpm *</label>
+          <select id="hr" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="melena">Presenza di Melena *</label>
+          <select id="melena" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="syncope">Presenza di Sincope *</label>
+          <select id="syncope" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="liver">Epatopatia nota *</label>
+          <select id="liver" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="chf">Scompenso cardiaco noto *</label>
+          <select id="chf" class="form-select"><option value="0">No (0 pt)</option><option value="2">Sì (+2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

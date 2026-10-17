@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criteri di Wells per Trombosi Venosa Profonda - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Criteri di Wells per Trombosi Venosa Profonda</h1>
+        <div class="subtitle">Stratificazione della probabilità di TVP dell'arto inferiore.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-chirurgia">Chirurgia & Perioperatorio</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <!-- Form Input -->
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="cancer">Cancro attivo *</label>
+          <select id="cancer" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="paralysis">Paralisi, paresi o immobilizzazione arto *</label>
+          <select id="paralysis" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="bedridden">Allettamento recente ≥ 3 gg o chirurgia nelle 12 sett. *</label>
+          <select id="bedridden" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="tenderness">Dolorabilità lungo il decorso venoso profondo *</label>
+          <select id="tenderness" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="entireleg">Edema di tutto l'arto *</label>
+          <select id="entireleg" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="calf">Circonferenza polpaccio > 3 cm rispetto al controlaterale *</label>
+          <select id="calf" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="pitting">Edema con fovea confinato all'arto sintomatico *</label>
+          <select id="pitting" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="collateral">Vene collaterali superficiali visibili *</label>
+          <select id="collateral" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="prevdvt">Precedente TVP documentata *</label>
+          <select id="prevdvt" class="form-select"><option value="0">No (0 pt)</option><option value="1">Sì (+1 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="altdiag">Diagnosi alternativa più probabile della TVP *</label>
+          <select id="altdiag" class="form-select"><option value="0">No (0 pt)</option><option value="-2">Sì (-2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Risultati -->
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

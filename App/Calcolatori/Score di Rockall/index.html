@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score di Rockall per Emorragia Digestiva Superiore - Calcolatori Medici</title>
+  <link rel="stylesheet" href="../../shared/shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="../../Home/index.html" class="btn-back">← Torna alla Home</a>
+      <div class="header-title-block">
+        <h1>Score di Rockall per Emorragia Digestiva Superiore</h1>
+        <div class="subtitle">Predizione del rischio di recidiva emorragica e mortalità dopo endoscopia per sanguinamento digestivo alto.</div>
+      </div>
+    </div>
+    <span class="category-badge badge-gastro">Gastroenterologia & Epatologia</span>
+  </header>
+
+  <main class="main-layout">
+    <div class="calc-grid-layout">
+      <section class="med-card">
+        <h2 class="med-card-title"><span>📋</span> Parametri del Paziente</h2>
+        <p class="med-card-subtitle">Compila i campi richiesti per visualizzare il calcolo e la stratificazione clinica.</p>
+        <form id="calcForm">
+          
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="age">Età *</label>
+          <select id="age" class="form-select"><option value="0">< 60 anni (0 pt)</option><option value="1">60 - 79 anni (+1 pt)</option><option value="2">≥ 80 anni (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="shock">Stato Emodinamico *</label>
+          <select id="shock" class="form-select"><option value="0">Nessuno shock: PAS ≥ 100 e FC < 100 (0 pt)</option><option value="1">Tachicardia: FC ≥ 100 e PAS ≥ 100 (+1 pt)</option><option value="2">Ipotensione: PAS < 100 mmHg (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="comorb">Comorbilità Maggiori *</label>
+          <select id="comorb" class="form-select"><option value="0">Nessuna comorbilità maggiore (0 pt)</option><option value="2">Cardiopatia ischemica, scompenso, altre malattie (+2 pt)</option><option value="3">Insufficienza renale, insufficienza epatica o neoplasia disseminata (+3 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="diag">Diagnosi Endoscopica *</label>
+          <select id="diag" class="form-select"><option value="0">Mallory-Weiss o nessuna lesione identificata (0 pt)</option><option value="1">Tutte le altre diagnosi (es. ulcera peptica, gastrite) (+1 pt)</option><option value="2">Neoplasia maligna del tratto GI superiore (+2 pt)</option></select>
+        </div>
+      
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" for="stigmata">Stigmate di Recente Sanguinamento (Forrest) *</label>
+          <select id="stigmata" class="form-select"><option value="0">Nessuna o base pulita (Forrest III) (0 pt)</option><option value="2">Sangue fresco nel lume, coagulo adeso o vaso visibile (Forrest I-II) (+2 pt)</option></select>
+        </div>
+      
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">⚡ Calcola</button>
+            <button type="button" id="btnReset" class="btn-secondary" style="flex: 1;">Resetta</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="med-card" style="display: flex; flex-direction: column;">
+        <h2 class="med-card-title"><span>📊</span> Esito & Stratificazione</h2>
+        
+        <div id="placeholderBox" style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
+          <div style="font-size: 40px; margin-bottom: 10px;">🩺</div>
+          <p>Inserisci i parametri e premi su <strong>Calcola</strong>.</p>
+        </div>
+
+        <div id="resultBox" style="display: none;">
+          <div class="result-hero">
+            <div class="res-label" id="resHeroLabel">Risultato</div>
+            <div class="res-val" id="resHeroValue">0</div>
+          </div>
+          <div id="metricsList" style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
+          <div class="clinical-note" id="calcNote" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
